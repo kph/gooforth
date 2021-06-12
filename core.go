@@ -12,6 +12,15 @@ func NewTask() (t Task) {
 	return ft
 }
 
+func (ft *fTask) Execute() {
+	for len(ft.rstack) > 0 {
+		w := ft.RPop()
+		for w != nil {
+			w = w.Execute(ft)
+		}
+	}
+}
+
 func (ft *fTask) Push(w Word) {
 	ft.stack = append(ft.stack, w)
 }
@@ -27,7 +36,7 @@ func (ft *fTask) Pop() (w Word) {
 }
 
 func (ft *fTask) RPush(w Word) {
-	ft.stack = append(ft.rstack, w)
+	ft.rstack = append(ft.rstack, w)
 }
 
 func (ft *fTask) RPop() (w Word) {

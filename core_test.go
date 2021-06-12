@@ -11,11 +11,11 @@ type wordTest struct {
 func TestForth(t *testing.T) {
 	task := NewTask()
 	word := wordTest{}
-	task.Push(word)
-	task.Pop().Execute(task)
+	task.RPush(word)
+	task.Execute()
 }
 
-func (wt wordTest) Execute(t Task) (n Task) {
+func (wt wordTest) Execute(t Task) (n Word) {
 	fmt.Printf("Hello world\n")
 	return nil
 }
