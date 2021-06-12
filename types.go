@@ -240,5 +240,3 @@ func (w *TypeComplex128) Execute(t Task) (n Word) {
 func (w *TypeComplex128) String() (s string) {
 	return strconv.FormatComplex(w.V, 'G', -1, 128)
 }
-
-var TypeIntOne = TypeInt{V: 1}

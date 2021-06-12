@@ -1,25 +1,34 @@
 package gooforth
 
 import (
-	"fmt"
 	"testing"
 )
 
 type wordTest struct {
 }
 
+var stringHello = TypeString{V: "Hello world"}
+var byteNL = TypeByte{V: '\n'}
+
+var intOne = TypeInt{V: 1}
+var intTwo = TypeInt{V: 2}
+
 func TestForth(t *testing.T) {
 	task := NewTask()
-	word := wordTest{}
-	task.RPush(word)
+
+	task.Push(&byteNL)
+	task.Push(&intTwo)
+	task.Push(&byteNL)
+	task.Push(&stringHello)
+	task.Push(&byteNL)
+	task.Push(&intOne)
+
+	task.RPush(&dotWord{})
+	task.RPush(&dotWord{})
+	task.RPush(&dotWord{})
+	task.RPush(&dotWord{})
+	task.RPush(&dotWord{})
+	task.RPush(&dotWord{})
+
 	task.Execute()
-
-	task.Push(&TypeIntOne)
-	dw := &dotWord{}
-	dw.Execute(task)
-}
-
-func (wt wordTest) Execute(t Task) (n Word) {
-	fmt.Printf("Hello world\n")
-	return nil
 }
