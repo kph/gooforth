@@ -13,6 +13,10 @@ func TestForth(t *testing.T) {
 	word := wordTest{}
 	task.RPush(word)
 	task.Execute()
+
+	task.Push(&TypeIntOne)
+	dw := &dotWord{}
+	dw.Execute(task)
 }
 
 func (wt wordTest) Execute(t Task) (n Word) {
